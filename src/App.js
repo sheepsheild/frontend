@@ -3,7 +3,7 @@ import { React } from 'react';
 function App() {
   return(
     <div>
-    <div class="room">
+    <div class="">
         <div class="middleContent">
             <div class="sharedScreen">Shared Screen</div>
             <div class="messagesPanel">
