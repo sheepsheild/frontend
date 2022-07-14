@@ -53,7 +53,7 @@ body {
 .messagesPanel .messages {
     position: relative;
     margin-top: 30px;
-    height: 65%;
+    height: 85%;
     overflow-y: auto;
 }
 
@@ -96,26 +96,33 @@ body {
     height: 10%;
     bottom: 20px;
     right: 15px;
-    justify-content: space-between;
-    align-items: center;
+}
+
+.messagesPanel .typeBox > input[type=text] {
+    width: 90%;
+    height: 100%;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(112, 112, 112);
     border-image: initial;
-    margin: auto;
     border-radius: 20px;
+    padding: 12px 10px;
 }
 
-.messagesPanel .typeBox > p {
-    padding-left: 7px;
-    align-self: center;
-}
-
-.messagesPanel .typeBox > img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 5%;
+.messagesPanel .typeBox > input[type=submit] {
+    width: 20%;
+    height: 100%;
+    background-image: url(/icon/send.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(112, 112, 112);
+    border-image: initial;
+    border-radius: 50px;
+    padding: 20px;
+    margin-left: 8px;
 }
 
 /* Users */
@@ -219,7 +226,7 @@ body {
 .CenterMenu >ul >li >img {
     width: 20px;
     height: 20px;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .CenterMenu >ul >li {
@@ -243,7 +250,6 @@ body {
 .RightMenu >ul >li >img {
     width: 20px;
     height: 20px;
-    border-radius: 50%;
 }
 
 .RightMenu >ul >li {
@@ -254,4 +260,18 @@ body {
     align-items: center;
     padding: 10px 10px;
     border-radius: 50%;
+}
+
+/* icon image */
+
+.IconUser {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.IconUser >img {
+    width: 15px;
+    height: 15px;
+    border-radius: 10%;
 }
