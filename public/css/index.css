@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -9,6 +10,7 @@ body {
 }
 
 .room {
+    position: relative;
     background-color: rgb(39, 33, 33);
     width: 100%;
     height: 100vh;
@@ -24,13 +26,19 @@ body {
 }
 
 .sharedScreen {
-    width: 80%;
+    width: 100%;
     color: rgb(112, 112, 112);
     font-size: 2.2em;
     text-align: center;
+    transition: all ease-in-out 0.5s;
+}
+
+.sharedScreen.active {
+    width: 80%;
 }
 
 .messagesPanel {
+    opacity: 0%;
     position: absolute;
     right: 10px;
     display: block;
@@ -40,7 +48,11 @@ body {
     color: rgb(112, 112, 112);
     background-color: white;
     border-radius: 15%;
-    transition: all 1s ease 0s;
+    transition: all ease-in-out 0.2s;
+}
+
+.messagesPanel.active {
+    opacity: 100%;
 }
 
 .messagesPanel .messagesHeader {
@@ -124,7 +136,7 @@ body {
     position: absolute;
     width: 95%;
     height: 20%;
-    bottom: 75px;
+    bottom: 78px;
     margin: auto;
 }
 
@@ -138,7 +150,7 @@ body {
     display: grid;
     grid-template-columns: repeat(150, 1fr);
     list-style: none;
-    gap: 30px;
+    gap: 20px;
 }
 
 .users .boxes > ul > li {
@@ -147,7 +159,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 90px;
+    padding: 50px 80px;
+    border-radius: 5%;
 }
 
 .users .boxes > ul > li .circle {
@@ -168,6 +181,7 @@ body {
     left: 0px;
     color: white;
     font-size: 12px;
+    padding: 5px;
 }
 
 
@@ -177,8 +191,114 @@ body {
     width: 100%;
     margin-top: 10px;
     bottom: 75px;
-    border-width: 0.5px;
+    /* border-width: 0.5px;
     border-style: solid;
     border-color: rgb(112, 112, 112);
-    border-image: initial;
+    border-image: initial; */
 }
+
+/* Footer */
+
+footer{
+    position: absolute;
+    display: flex;
+    height: 8%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    bottom: 0;
+    padding: 0 10px;
+}
+
+footer > p {
+    color: #707070;
+}
+
+footer > .middleIcons > ul {
+    display: flex;
+    color: white;
+    list-style: none;
+    margin-top: 15px;
+}
+
+footer > .middleIcons > ul > li {
+    padding: 5px 5px 0 5px;
+    border: 1px solid #707070;
+    border-radius: 50%;
+    margin:0 10px;
+    font-size: 18px;
+    background-color: #2E2929;
+    cursor: pointer;
+    transition:all ease-in-out 0.2s;
+}
+
+footer > .middleIcons > ul > li:hover{
+    background-color: purple;
+    color: black;
+    border-color: purple;
+}
+
+footer > .rightIcons > ul {
+    list-style: none;
+}
+
+footer > .rightIcons > ul > li {
+    color: rgb(219, 61, 61);
+    font-size: 25px;
+    padding: 5px 5px 0 5px;
+    margin-top: 5px;
+    border-right: 1px solid rgba(219, 61, 61, 0);
+    transition: all ease-in-out 0.2s;
+}
+
+.toggle {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.toggle.active{
+    border-right: 1px solid rgba(219, 61, 61, 100);
+}
+
+/* Icons */
+
+.COut {
+    color: white;
+    background-color: red !important;
+}
+
+.COut:hover {
+    border-color: red !important;
+}
+
+
+/* Scrollbar  */
+
+::-webkit-scrollbar {
+    height: 5px;
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: grey !important;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+    cursor: pointer;
+  }
