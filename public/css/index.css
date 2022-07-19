@@ -135,8 +135,8 @@ body {
 .users {
     position: absolute;
     width: 95%;
-    min-height: 18%;
-    bottom: 78px;
+    min-height: 20%;
+    bottom: 60px;
     margin: 0 auto;
     overflow-x: scroll;
     display: flex;
