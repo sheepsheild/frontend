@@ -4,15 +4,17 @@ import {
   FaMicrophone,
   FaVideo,
   FaHandPointUp,
-  FaPhoneSlash,
+  FaPhoneSlash, 
+  FaChartLine,
 } from "react-icons/fa";
 import { TbScreenShare } from "react-icons/tb";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { SiGooglechat } from "react-icons/si"
 
 
-import PrivateMessages from "./Components/PrivateMessages/PrivateMessages";
-
+import PrivateMessages from "./components/PrivateMessages/PrivateMessages";
+import Survey from "./components/Survey/Survey";
+import SharedScreen from "./components/SharedScreen/SharedScreen";
 
 
 class App extends Component {
@@ -28,6 +30,7 @@ class App extends Component {
     StartWebcam: false,
     StartRaiseHand: false,
     StartShareScreen: false,
+    ShowSurvey: false,
   };
 
   handlePrivateIsActive = (chat, name) => {
@@ -80,6 +83,11 @@ class App extends Component {
     this.setState({ StartShareScreen: !this.state.StartShareScreen });
   };
 
+  HandleShowSurvey = () => {
+    this.setState({ ShowSurvey: !this.state.ShowSurvey });
+  }
+
+
   render() {
     const isActive = this.state.isActive;
     const isBack = this.state.isBack;
@@ -87,14 +95,17 @@ class App extends Component {
     let Chat = this.state.Chat;
     let Name = this.state.Name;
     let Messages = this.state.Messages;
+    let StartSurvey = this.state.ShowSurvey;
 
     return (
       <div>
         <div className="room">
+          {this.state.ShowSurvey ? <Survey ShowSurvey={StartSurvey}/>:null}
+          
           <div className="middleContent">
-            <div class={(isActive || privateIsActive) ? "sharedScreen active" : "sharedScreen"}>
-              Shared Screen
-            </div>
+
+            <SharedScreen IA={isActive} PIA={privateIsActive} />
+            
             <div class={isActive ? "messagesPanel active" : "messagesPanel"}>
               <h3 class="messagesHeader">public messages</h3>
               <div class="messages">
@@ -142,11 +153,12 @@ class App extends Component {
               </div>
             </div>
 
-              {privateIsActive ? <PrivateMessages chat={Chat} name={Name} messages={Messages} /> : null}
+            {privateIsActive ? <PrivateMessages chat={Chat} name={Name} messages={Messages} /> : null}
 
-            </div>
+          </div>
           <div className="users">
 
+            {/* <Card /> */}
 
             <div className={isBack ? "card active" : "card"} onClick={this.handleRotationCard}>
               <div className="frontCard">
@@ -623,6 +635,10 @@ class App extends Component {
             <p className="projectName">Cyber meeting</p>
             <div className="middleIcons">
               <ul>
+                <li title="Survey" onClick={this.HandleShowSurvey}>
+                  {" "}
+                  <FaChartLine />{" "}
+                </li>
                 <li title="microphone" onClick={this.HandleStartMicroPhone}>
                   {" "}
                   <FaMicrophone />{" "}

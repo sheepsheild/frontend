@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import './PMS.css'
 
 import { TiArrowRightThick } from 'react-icons/ti'
 
