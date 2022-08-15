@@ -1,12 +1,12 @@
 import React from "react";
-import './SuS.css'
+import './Create_Survey.css'
 
 import {
     FaMinus,
     FaPlus
   } from "react-icons/fa";
 
-class Survey extends React.Component {
+class CreateSurvey extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
@@ -64,4 +64,4 @@ class Survey extends React.Component {
     );
   }
 }
-export default Survey;
+export default CreateSurvey;

@@ -6,6 +6,7 @@ import {
   FaHandPointUp,
   FaPhoneSlash, 
   FaChartLine,
+  FaChartBar,
 } from "react-icons/fa";
 import { TbScreenShare } from "react-icons/tb";
 import { BsChatRightTextFill } from "react-icons/bs";
@@ -13,7 +14,8 @@ import { SiGooglechat } from "react-icons/si"
 
 
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages";
-import Survey from "./components/Survey/Survey";
+import CreateSurvey from "./components/Survey/CreateSurvey";
+import ShowSurvey from "./components/Survey/ShowSurvey";
 import SharedScreen from "./components/SharedScreen/SharedScreen";
 
 
@@ -30,7 +32,8 @@ class App extends Component {
     StartWebcam: false,
     StartRaiseHand: false,
     StartShareScreen: false,
-    ShowSurvey: false,
+    CSurvey: false,
+    SSurvey: false,
   };
 
   handlePrivateIsActive = (chat, name) => {
@@ -83,9 +86,21 @@ class App extends Component {
     this.setState({ StartShareScreen: !this.state.StartShareScreen });
   };
 
-  HandleShowSurvey = () => {
-    this.setState({ ShowSurvey: !this.state.ShowSurvey });
+  handleSSurvey = () => {
+    if (this.state.SSurvey===false && this.state.CSurvey===true)
+    {
+      this.setState({CSurvey: !this.state.CSurvey})
+    }
+    this.setState({SSurvey: !this.state.SSurvey});
   }
+
+  handleCSurvey = () => {
+    if (this.state.SSurvey===true && this.state.CSurvey===false)
+    {
+      this.setState({SSurvey: !this.state.SSurvey})
+    }
+    this.setState({ CSurvey: !this.state.CSurvey });
+  };
 
 
   render() {
@@ -95,12 +110,13 @@ class App extends Component {
     let Chat = this.state.Chat;
     let Name = this.state.Name;
     let Messages = this.state.Messages;
-    let StartSurvey = this.state.ShowSurvey;
 
     return (
       <div>
         <div className="room">
-          {this.state.ShowSurvey ? <Survey ShowSurvey={StartSurvey}/>:null}
+
+          {this.state.CSurvey ? <CreateSurvey /> : null}
+          {this.state.SSurvey ? <ShowSurvey />:null}
           
           <div className="middleContent">
 
@@ -635,7 +651,11 @@ class App extends Component {
             <p className="projectName">Cyber meeting</p>
             <div className="middleIcons">
               <ul>
-                <li title="Survey" onClick={this.HandleShowSurvey}>
+                <li title="Survey" onClick={this.handleSSurvey}>
+                  {" "}
+                  <FaChartBar />{" "}
+                </li>
+                <li title="Survey" onClick={this.handleCSurvey}>
                   {" "}
                   <FaChartLine />{" "}
                 </li>

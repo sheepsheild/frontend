@@ -7,11 +7,12 @@
     right: 40%;
     border: 3px solid black;
     z-index: 9;
+    width: 25%;
   }
   
   /* Add styles to the form container */
   .form-container {
-    max-width: 300px;
+    width: 100%;
     padding: 10px;
     background-color: white;
   }
