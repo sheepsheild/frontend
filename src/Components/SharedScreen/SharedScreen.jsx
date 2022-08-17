@@ -1,5 +1,4 @@
 import React from 'react';
-import './SSS.css'
 
 const SharedScreen = ({IA,PIA}) => {
     return (

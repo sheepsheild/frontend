@@ -30,7 +30,7 @@ body {
 /* Message Panel Start */
 
 .messagesPanel {
-    opacity: 0%;
+    opacity: 100%;
     position: absolute;
     right: 10px;
     display: block;
@@ -43,9 +43,6 @@ body {
     /* transition: all ease-in-out 0.2s; */
 }
 
-.messagesPanel.active {
-    opacity: 100%;
-}
 
 .messagesPanel .messagesHeader {
     opacity: 0.5;
@@ -147,6 +144,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
     padding: 8px 80px;
     margin-left: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     background-color: #140E0E;
     border-radius: 5%;
@@ -391,6 +389,12 @@ footer > .rightIcons > ul > li {
     right: 2%;
     top: 75%;
     color: white;
+}
+
+.survey.active {
+    background-color: purple;
+    color: black;
+    border-color: purple;
 }
 
 
