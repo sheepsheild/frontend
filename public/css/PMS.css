@@ -4,11 +4,13 @@
         right: 10px;
         display: block;
         width: 20%;
-        height: 90%;
-        margin-bottom: 20px;
+        height: 95%;
+        /* margin-bottom: 20px; */
         color: rgb(112, 112, 112);
-        background-color: white;
-        border-radius: 15%;
+        background-color: #e2edff;
+        border-radius: 10%;
+        display: flex;
+        flex-flow: column;
         /* transition: all ease-in-out 1.5s; */
         text-align: center;
     }
@@ -18,26 +20,41 @@
     }
     
     .private-messagesHeader {
-        opacity: 0.5;
+        height: 3%;
         font-size: 20px;
         text-align: center;
-        margin: auto;
     }
     
+    /* show-persons */
+
     .show-persons {
-        height: 70%;
         overflow-y: auto;
-        overflow-x: hidden;
-        margin-top: 30px;
+        /* overflow-x: hidden; */
+        margin-top: 1%;
+        height: 85%;
+        width: 100%;
     }
     
+    .show-persons > ul {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        justify-content: space-around;
+        align-items: stretch;
+        padding-left: 10%;
+        padding-right: 10%;
+        list-style: none;
+    }
+
     .show-persons > ul > li {
         display: flex;
         margin-top: 10px;
+        flex-flow: row;
+        width: 100%;
         justify-content: space-around;
         align-items: center;
         border: 1px dashed #140E0E;
-        margin-right: 20px;
+        /* margin-right: 20px; */
         border-radius: 8px;
         cursor: pointer;
         transition: all ease-in-out 0.2s;
@@ -72,42 +89,55 @@
         color: black;
         border-color: purple;
     }
+
+    /* MessagesPanel */
     
-    .chat-page {
-        margin-top: 10px;
+    .privateMessagesPanel .chat-page {
+        /* margin-top: 10px; */
         position: relative;
-        height: 70%;
+        height: 76%;
     }
     
     .chat-messages {
+        position: relative;
         overflow-y: auto;
-        height: 70%;
+        height: 85%;
+        display: flex;
+        flex-flow: column;
+        /* margin-top: -20px; */
     }
     
     .chat-messages > p {
-        padding: 5px 10px;
-        color: black;
         border-radius: 20px;
+        color: white;
+        font-size: 0.9em;
+        padding: 2px 10px;
+        text-align: justify;
+        direction: ltr;
+        max-width: 90%;
     }
     
     .chat-messages > .chat-messages-me {
         text-align: right;
-        background-color: purple;
+        background-color: #5349f8;    
+        border-radius: 10px 10px 0 10px ;
         margin:5px 2px 0 auto;
-        width: 90%;
     }
     
     .chat-messages > .chat-messages-other {
         text-align: left;
-        background-color: #707070;
-        margin:8px auto 0 2px;
-        width: 90%;
+        margin:8px auto 0 2px;  
+        background-color: #C78EFF;
+        border-radius: 10px 10px 10px 0 ;
     }
     
     .title-chat-page {
+        position: relative;
         display: flex;
         justify-content: space-around;
         align-items: center;
+        height: 10%;
+        margin-top: 2%;
     }
     
     .title-chat-page > .return-arrow {
@@ -125,16 +155,47 @@
         background-color: #707070;
         color: white;
     }
-    
-    
-    .privateMessagesPanel > .typeBox {
+
+    /* typeBox */
+
+    .privateMessagesPanel .typeBox {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border: 1px solid #707070;
-        border-radius: 20px;
-        width: 90%;
-        height: 10%;
-        margin: auto;
-        margin-top: 20px;
+        flex-flow: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        height: 12%;
+    }
+    
+    .privateMessagesPanel .typeBox input[type=text]{
+        width: 85%;
+        padding: 15px;
+        border: none;
+        border-radius: 15px 0 0 15px;
+        background-color: #7f9bc2;
+        color: white;
+    }
+    
+    .privateMessagesPanel .typeBox input[type=text]:focus {
+        /* background-color: #ddd; */
+        outline: none;
+        opacity: 0.8;
+    }
+    
+    .privateMessagesPanel .typeBox .sumbit-btn {
+        color: white;
+        background-color: #7f9bc2;
+        width: 15%;
+        height: 100%;
+        border: none;
+        border-radius: 0 15px 15px 0;
+        cursor: pointer;
+        font-size: 150%;
+        text-align: center;
+        transition: all ease-in-out 0.2s;
+    }
+    
+    .privateMessagesPanel .typeBox .sumbit-btn:hover {
+        opacity: 0.8;
     }

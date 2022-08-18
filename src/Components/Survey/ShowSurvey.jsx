@@ -1,44 +1,48 @@
 import React from "react";
 
-class CreateSurvey extends React.Component {
+class ShowSurvey extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-       formValues: [{ question: "", option : "" }]
-     };
+      question: "You shoud answer this Question",
+      Options: [{ option : "" }]
+    };
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
-  handleChange(i, e) {
-    let formValues = this.state.formValues;
-    formValues[i][e.target.question] = e.target.value;
-    this.setState({ formValues });
+  ReadForm(){
+    this.setState({question :  this.state.question
+    })
   }
 
   addFormFields() {
     this.setState(({
-      formValues: [...this.state.formValues, { option: "" }]
+      Options: [...this.state.Options, { option: "" }]
     }))
   }
 
-  removeFormFields(i) {
-    let formValues = this.state.formValues;
-    formValues.splice(i, 1);
-    this.setState({ formValues });
-  }
+  // removeFormFields(i) {
+  //   let Options = this.state.Options;
+  //   Options.splice(i, 1);
+  //   this.setState({ Options });
+  // }
 
   handleSubmit(event) {
     event.preventDefault();
-    alert(JSON.stringify(this.state.formValues));
+    alert(JSON.stringify(this.state.Options));
   }
 
   NewOption(){
-    return(
+    for (let i = 0; i < this.state.Options.length; i++) {
+      const value_option = this.state.Options[i];
+      return(
         <li>
-            <input type="radio" id="html" name="fav_language" value="HTML"/>
-            <label for="html">First option</label><br/>
+            <input type="radio" id="html" name="fav_language" value={value_option}/>
+            <label for="html">{value_option}</label>
         </li>
     )
+    }
+
   }
 
   render() {
@@ -48,19 +52,19 @@ class CreateSurvey extends React.Component {
             <form className="form-container" onSubmit={this.handleSubmit}>
                 <label for="question"><b>Question</b></label>
                 <p>
-                    You shoud answer this Question
+                    {this.state.question}
                 </p>
                 <label for="option"><b>Option</b></label>
-                {this.state.formValues.map((element, index) => (
+                {this.state.Options.map((element, index) => (
                     <div className="option" key={index}>
                         <ul>
                             <li>
                                 <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                <label for="html">First option</label><br/>
+                                <label for="html">First option</label>
                             </li>
                             <li>
                                 <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                <label for="html">second option</label><br/>
+                                <label for="html">second option</label>
                             </li>
                             {
                                 index ? 
@@ -77,4 +81,4 @@ class CreateSurvey extends React.Component {
     );
   }
 }
-export default CreateSurvey;
+export default ShowSurvey;

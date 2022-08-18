@@ -1,13 +1,12 @@
 import { React, useState } from "react";
 
-import PrivateMessages from './Components/Messages/PrivateMessages';
-import Cards from './Components/Cards/Cards';
-import PublicMessages from './Components/Messages/PublicMessages';
-import FooterComponent from './Components/Footer/FooterComponent';
-import SharedScreen from './Components/SharedScreen/SharedScreen';
-import Survey from './Components/Survey/Survey';
-
-
+import PrivateMessages from './components/Messages/PrivateMessages';
+import Cards from './components/Cards/Cards';
+import PublicMessages from './components/Messages/PublicMessages';
+import FooterComponent from './components/Footer/FooterComponent';
+import SharedScreen from './components/SharedScreen/SharedScreen';
+import CreateSurvey from './components/Survey/CreateSurvey';
+import ShowSurvey from './components/Survey/ShowSurvey'
 
 const App = () => {
 
@@ -24,7 +23,9 @@ const App = () => {
   const [webcamActive, setWebcamActive] = useState(false);
   const [raiseHandActive, setRaiseHandActive] = useState(false);
   const [screenShareActive, setScreenShareActive] = useState(false);
-  const [surveyActive, setSurvayActive] = useState(false);
+  const [CreateSurveyActive, setCreateSurveyActive] = useState(false);
+  const [ShowSurveyActive, setShowSurveyActive] = useState(false);
+
  
   
 
@@ -33,8 +34,8 @@ const App = () => {
   return (
       <div>
         <div className="room">
-          {surveyActive ? <Survey/> : null}
-          
+          {CreateSurveyActive ? <CreateSurvey/> : null}
+          {ShowSurveyActive ? <ShowSurvey/> : null}
           <div className="middleContent">
 
             <SharedScreen IA={isActive} PIA={(pvFooterActive || pvCardActive)} />
@@ -69,7 +70,8 @@ const App = () => {
             setWebcamActive={setWebcamActive}
             setRaiseHandActive={setRaiseHandActive}
             setScreenShareActive={setScreenShareActive}
-            setSurvayActive={setSurvayActive}
+            setCreateSurveyActive={setCreateSurveyActive}
+            setShowSurveyActive={setShowSurveyActive}
             setIsActive={setIsActive}
             setPvFooterActive={setPvFooterActive}
             setPvCardActive={setPvCardActive}

@@ -7,36 +7,37 @@
     right: 40%;
     border: 3px solid black;
     z-index: 9;
-    width: 25%;
+    width: 20%;
   }
   
   /* Add styles to the form container */
   .form-container {
     width: 100%;
     padding: 10px;
-    background-color: white;
+    background-color: #e5ede8;
   }
 
   .option > ul {
     display: flex;
     flex-flow: column;
-    color: white;
+    color: #212121;
+    padding-left: 1%;
+    padding-right: 1%;
     list-style: none;
   }
 
   .option > ul > li {
     padding: 5px;
-    border: 1px solid #707070;
-    margin: 5px;
-    font-size: 12px;
-    background-color: #2E2929;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    background-color: #c6dbce;
     cursor: pointer;
     transition:all ease-in-out 0.2s;
   }
 
   .option > ul > li:hover {
-    border: 1px solid #2E2929;
-    background-color: #707070;
+    background-color: #84b898;
     cursor: pointer;
   }
 
@@ -60,8 +61,5 @@
 
   .form-container >p{
     width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size : 12px;
+    font-size: 0.9em;
   }

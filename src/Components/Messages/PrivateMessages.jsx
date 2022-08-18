@@ -2,7 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 
 
-import { TiArrowRightThick } from 'react-icons/ti'
+import { 
+  TiArrowRightThick,
+  TiLocationArrowOutline
+} from 'react-icons/ti'
 
 const PrivateMessages = ({stateChat, name, messages}) => {
   
@@ -39,6 +42,21 @@ const PrivateMessages = ({stateChat, name, messages}) => {
                       <h4>muller</h4>
                       <span>1</span>
                   </li>
+                  <li>
+                      <img alt='person' src='/img/img4.jpg' />
+                      <h4>jack</h4>
+                      <span>7</span>
+                  </li>
+                  <li>
+                      <img alt='person' src='/img/img1.jpg' />
+                      <h4>leo</h4>
+                      <span>2</span>
+                  </li>
+                  <li>
+                      <img alt='person' src='/img/img3.jpg' />
+                      <h4>will</h4>
+                      <span>5</span>
+                  </li>
               </ul>
             </div>
         </div>
@@ -50,7 +68,7 @@ const PrivateMessages = ({stateChat, name, messages}) => {
           <h3 class="private-messagesHeader">private messages</h3>
           <div className='chat-page'>
                   <div className='title-chat-page'>
-                    <img alt='john' src='/img/girl.jpg' style={{width:"60px", height:"60px", borderRadius:"50%"}}/>
+                    <img alt='john' src='/img/girl.jpg' style={{width:"40px", height:"40px", borderRadius:"50%"}}/>
                     <h4>{name}</h4>
                     <i className="return-arrow" onClick={() => setChat(handleChat => !handleChat)} style={{cursor:"pointer"}}><TiArrowRightThick /></i>
                   </div>
@@ -70,10 +88,10 @@ const PrivateMessages = ({stateChat, name, messages}) => {
                       <p className='chat-messages-me'>by</p>
                   </div>
           </div>
-          <div className="typeBox">
-              <p>Type here</p>
-              <span>icon</span>
-          </div>
+          <form class="typeBox" action="">
+              <input type="text" placeholder="Enter Message" name="question" required/>
+              <button className="sumbit-btn" type="submit"><TiLocationArrowOutline  /></button>
+            </form>
       </div>
     )
 }

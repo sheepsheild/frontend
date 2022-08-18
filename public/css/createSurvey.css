@@ -3,18 +3,18 @@
   .form-popup {
     display: block;
     position: fixed;
-    top: 100px;
+    top: 10%;
     right: 40%;
-    border: 3px solid black;
     z-index: 9;
-    width: 25%;
+    width: 20%;
   }
   
   /* Add styles to the form container */
   .form-container {
     width: 100%;
     padding: 10px;
-    background-color: white;
+    background-color: #e5ede8;
+    border-radius: 5px;
   }
   
   /* Full-width input fields */
@@ -23,7 +23,7 @@
     padding: 15px;
     border: none;
     border-radius: 10px;
-    background: #f1f1f1;
+    background: #c6dbce;
   }
 
   /* When the inputs get focus, do something */
@@ -47,13 +47,18 @@
     cursor: pointer;
     width: 100%;
     margin-bottom:10px;
-    opacity: 0.8;
+    border-radius: 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all ease-in-out 0.2s;
   }
 
   .form-container .add-btn ,.remove-btn {
     color: white;
-    padding: 16px 10px;
-    padding: 0%;
+    /* padding: 16px 10px; */
+    padding: 0 8px;
     width: 30px;
     height: 30px;
     margin: 7px;
@@ -61,23 +66,25 @@
     border-radius: 50%;
     cursor: pointer;
     margin-bottom:10px;
-    opacity: 0.8;
+    transition: all ease-in-out 0.2s;
   }
-
+  
   .form-container .add-btn {
-    background-color: black;
+    background-color: green;
   }
 
+  .add-btn:hover{
+    box-shadow: 0 0 9px green;
+  }
+  
   .form-container .remove-btn {
     background-color: red;
   }
 
-   /* Add some hover effects to buttons */
-   .form-container .add-btn:hover,.remove-btn:hover {
-    opacity: 1;
-    border-radius: 0px;
+  .remove-btn:hover {
+    box-shadow: 0 0 9px red;
   }
+
   .form-container .sumbit-btn:hover {
-    opacity: 1;
-    border-radius: 15px;
+    background-color: green;
   }

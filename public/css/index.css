@@ -35,31 +35,32 @@ body {
     right: 10px;
     display: block;
     width: 20%;
-    height: 90%;
-    margin-bottom: 20px;
+    height: 95%;
     color: rgb(112, 112, 112);
-    background-color: white;
-    border-radius: 15%;
+    background-color: #e2edff;
+    border-radius: 10%;
+    display: flex;
+    flex-flow: column;
     /* transition: all ease-in-out 0.2s; */
 }
 
 
 .messagesPanel .messagesHeader {
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    height: 3%;
     font-size: 20px;
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .messagesPanel .messages {
-    position: relative;
-    margin-top: 30px;
-    height: 65%;
+    margin-top: 5%;
+    height: 85%;
     overflow-y: auto;
 }
 
 .messagesPanel .messages > ul {
-    margin-top: 7px;
+    /* margin-top: 7px; */
     padding-left: 5px;
     padding-right: 5px;
     list-style: none;
@@ -67,18 +68,28 @@ body {
 
 .messagesPanel .messages > ul > li {
     display: flex;
+    flex-flow: row;
     margin-top: -20px;
 }
 
 .messagesPanel .messages > ul > li > p {
-    background-color: rgb(99, 93, 93);
+    background-color: #C78EFF;
     color: white;
-    text-align: right;
     font-size: 0.9em;
-    border-radius: 10px;
     padding: 2px 10px;
     text-align: justify;
     direction: ltr;
+    border-radius: 10px 10px 10px 0 ;
+}
+
+.messagesPanel .messages > ul > .chat-messages-me {
+    flex-flow: row-reverse;
+    text-align: right;
+}
+
+.messagesPanel .messages > ul > .chat-messages-me >p {
+    background-color: #5349f8;    
+    border-radius: 10px 10px 0 10px ;
 }
 
 .messagesPanel .messages > ul > li > span {
@@ -91,39 +102,52 @@ body {
 }
 
 .messagesPanel .typeBox {
-    position: absolute;
     display: flex;
-    width: 90%;
-    height: 10%;
-    bottom: 20px;
-    right: 15px;
-    justify-content: space-around;
-    align-items: center;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(112, 112, 112);
-    border-image: initial;
-    margin: auto;
-    border-radius: 20px;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    height: 12%;
 }
 
-.messagesPanel .typeBox > p {
-    padding-left: 7px;
-    align-self: center;
+.messagesPanel .typeBox input[type=text]{
+    width: 85%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    background-color: #7f9bc2;
+    color: white;
 }
 
-.messagesPanel .typeBox > img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 5%;
+.messagesPanel .typeBox input[type=text]:focus {
+    /* background-color: #ddd; */
+    outline: none;
+    opacity: 0.8;
+}
+
+.messagesPanel .typeBox .sumbit-btn {
+    color: white;
+    background-color: #7f9bc2;
+    width: 15%;
+    height: 100%;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    font-size: 150%;
+    text-align: center;
+    transition: all ease-in-out 0.2s;
+}
+
+.messagesPanel .typeBox .sumbit-btn:hover {
+    opacity: 0.8;
 }
 
 /* Users */
 
 .users {
     position: absolute;
-    width: 95%;
+    width: 99%;
     min-height: 17%;
     bottom: 60px;
     margin: 0 auto;

@@ -6,6 +6,7 @@ import {
   FaHandPointUp,
   FaPhoneSlash, 
   FaChartLine,
+  FaChartBar
 } from "react-icons/fa";
 import { TbScreenShare } from "react-icons/tb";
 import { BsChatRightTextFill } from "react-icons/bs";
@@ -20,7 +21,8 @@ const FooterComponent = ({
   setWebcamActive,
   setRaiseHandActive,
   setScreenShareActive,
-  setSurvayActive,
+  setCreateSurveyActive,
+  setShowSurveyActive,
   setPvFooterActive,
   setPvCardActive,
   isActive,
@@ -28,7 +30,8 @@ const FooterComponent = ({
   pvFooterActive,
   }) => {
 
-    const [survey, setSurvey] = useState(true);
+    const [CreateSurvey, setCreateSurvey] = useState(true);
+    const [ShowSurvey, setShowSurvey] = useState(true);
     const [mic, setMic] = useState(true);
     const [webcam, setWebcam] = useState(true);
     const [raiseHand, setRaiseHand] = useState(true);
@@ -43,9 +46,16 @@ const FooterComponent = ({
     if (isActive===false && pubMess===false) {setPubMess(pubMess => true);}
 
 
+    function HandleCreateSurvey() {
+      if(ShowSurvey===false) {setShowSurvey(true);setShowSurveyActive(ShowSurvey)}
+      setCreateSurvey(CreateSurvey => !CreateSurvey);
+      setCreateSurveyActive(CreateSurvey)
+    }
+
     function HandleShowSurvey() {
-      setSurvey(survey => !survey);
-      setSurvayActive(survey)
+      if(CreateSurvey===false) {setCreateSurvey(true);setCreateSurveyActive(CreateSurvey)}
+      setShowSurvey(ShowSurvey => !ShowSurvey);
+      setShowSurveyActive(ShowSurvey)
     }
 
     function HandleStartMicroPhone() {
@@ -101,7 +111,11 @@ const FooterComponent = ({
             <p className="projectName">Cyber meeting</p>
             <div className="middleIcons">
               <ul>
-                <li className={survey ? '' : 'survey active'} title="Survey" onClick={HandleShowSurvey}>
+                <li title="ShowSurvey" onClick={HandleShowSurvey}>
+                  {" "}
+                  <FaChartBar />{" "}
+                </li>
+                <li title="CreateSurvey" onClick={HandleCreateSurvey}>
                   {" "}
                   <FaChartLine />{" "}
                 </li>
