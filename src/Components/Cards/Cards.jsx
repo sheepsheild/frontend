@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 
 import {
     FaMicrophone,
@@ -25,7 +25,26 @@ const Cards = ({
   }) => {
 
     const [isBack, setIsBack] = useState(false)
-    const [pvBox, setPvBox] = useState(true);
+    const [pvBox, setPvBox] = useState(true)
+    const [Users, setUsers] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+      fetch("https://api.example.com/Users")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setUsers(result);
+          },
+
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }, [])
 
     /* After a certain movement the pvCard closes instead of opening so bellow code for cover this problem */
     if (pvCardActive===false && isActive===true && pvBox===false) {setPvBox(pvBox => true);}
@@ -53,15 +72,488 @@ const Cards = ({
 
     }
 
-    return (
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+    //   return (
+    //     <div className="users">
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard" onClick={() => HandlePrivateIsActive(false, "Lisa")}>
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button  className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+              
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //                 <button className="startChat">Start Chat</button>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //         <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+    //           <div className="frontCard">
+    //             <div className="circle">
+    //               <img alt="personImg" src="/img/girl.jpg" />
+    //             </div>
+    //             <div className="iconUser">
+    //               <ul>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={mic ? "mic" : ""}
+    //                 >
+    //                   <FaMicrophone />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={webcam ? "webcam" : ""}
+    //                 >
+    //                   <FaVideo />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={
+    //                     shareScreen ? "shareScreen" : ""
+    //                   }
+    //                 >
+    //                   <TbScreenShare />
+    //                 </li>
+    //                 <li
+    //                   style={{ display: "none" }}
+    //                   className={raiseHand ? "raiseHand" : ""}
+    //                 >
+    //                   <FaHandPointUp />
+    //                 </li>
+    //               </ul>
+    //             </div>
+    //             <p>
+    //                 lisa
+    //             </p>
+    //           </div>
+    //           {/* end front card*/}
+
+    //           <div className="backCard">
+    //             <div className="details">
+    //                 <p className="fullName">Full Name</p><span>Lisa</span>
+    //                 <p className="idCard">ID Card</p><span>8546321</span>
+    //             </div>
+    //           </div>
+
+    //           {/* end back card */}
+    //         </div>
+
+    //       </div>
+    // )
+      return (
         <div className="users">
-
-            {/* <Card /> */}
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
+          {Users.map(User => (
+            <div key={User.id} className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
               <div className="frontCard">
                 <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
+                  <img alt="personImg" src={User.img} />
                 </div>
                 <div className="iconUser">
                   <ul>
@@ -94,440 +586,27 @@ const Cards = ({
                   </ul>
                 </div>
                 <p>
-                    lisa
+                  {User.name}
                 </p>
               </div>
               {/* end front card*/}
 
-              <div className="backCard" onClick={() => HandlePrivateIsActive(false, "Lisa")}>
+              <div className="backCard" onClick={() => HandlePrivateIsActive(false, "{User.name}")}>
                 <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
+                    <p className="fullName">Full Name</p><span>{User.name} {User.family}</span>
+                    <p className="idCard">ID Card</p><span>{User.id}</span>
                     <button  className="startChat">Start Chat</button>
                 </div>
               </div>
 
               {/* end back card */}
             </div>
+          ))}
+        </div>
+      );
+    }
 
 
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-              
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                    <button className="startChat">Start Chat</button>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-            <div className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
-              <div className="frontCard">
-                <div className="circle">
-                  <img alt="personImg" src="/img/girl.jpg" />
-                </div>
-                <div className="iconUser">
-                  <ul>
-                    <li
-                      style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
-                    >
-                      <FaMicrophone />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
-                    >
-                      <FaVideo />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
-                    >
-                      <TbScreenShare />
-                    </li>
-                    <li
-                      style={{ display: "none" }}
-                      className={raiseHand ? "raiseHand" : ""}
-                    >
-                      <FaHandPointUp />
-                    </li>
-                  </ul>
-                </div>
-                <p>
-                    lisa
-                </p>
-              </div>
-              {/* end front card*/}
-
-              <div className="backCard">
-                <div className="details">
-                    <p className="fullName">Full Name</p><span>Lisa</span>
-                    <p className="idCard">ID Card</p><span>8546321</span>
-                </div>
-              </div>
-
-              {/* end back card */}
-            </div>
-
-          </div>
-    )
 
 }
 

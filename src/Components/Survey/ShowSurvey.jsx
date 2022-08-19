@@ -5,7 +5,10 @@ class ShowSurvey extends React.Component {
     super(props)
     this.state = { 
       question: "You shoud answer this Question",
-      Options: [{ option : "" }]
+      Options: [
+        {"id":1, "Content" : "First Option"},
+        {"id":2, "Content" : "second Option"}],
+      result: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -29,20 +32,7 @@ class ShowSurvey extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert(JSON.stringify(this.state.Options));
-  }
-
-  NewOption(){
-    for (let i = 0; i < this.state.Options.length; i++) {
-      const value_option = this.state.Options[i];
-      return(
-        <li>
-            <input type="radio" id="html" name="fav_language" value={value_option}/>
-            <label for="html">{value_option}</label>
-        </li>
-    )
-    }
-
+    alert(JSON.stringify(this.state.result));
   }
 
   render() {
@@ -55,25 +45,14 @@ class ShowSurvey extends React.Component {
                     {this.state.question}
                 </p>
                 <label for="option"><b>Option</b></label>
-                {this.state.Options.map((element, index) => (
-                    <div className="option" key={index}>
-                        <ul>
-                            <li>
-                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                <label for="html">First option</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                <label for="html">second option</label>
-                            </li>
-                            {
-                                index ? 
-                                this.NewOption()
-                                : null
-                            }
-                        </ul>
-                    </div>
-                ))}
+                <ul className="option">
+                  {this.state.Options.map(Option => (
+                    <li key={Option.id} >
+                      <input type="radio" id={Option.Content} name="OptionList" value={Option.Content} onChange={e => {this.state.result = e.target.value}}/>
+                      <label for={Option.Content}>{Option.Content}</label>
+                    </li>
+                  ))}
+                </ul>
                 
                 <button className="sumbit-btn" type="submit">send</button>
             </form>
