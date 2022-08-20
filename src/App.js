@@ -1,12 +1,12 @@
 import { React, useState } from "react";
 
-import PrivateMessages from './components/Messages/PrivateMessages';
-import Cards from './components/Cards/Cards';
-import PublicMessages from './components/Messages/PublicMessages';
-import FooterComponent from './components/Footer/FooterComponent';
-import SharedScreen from './components/SharedScreen/SharedScreen';
-import CreateSurvey from './components/Survey/CreateSurvey';
-import ShowSurvey from './components/Survey/ShowSurvey'
+import PrivateMessages from './Components/Messages/PrivateMessages';
+import Cards from './Components/Cards/Cards';
+import PublicMessages from './Components/Messages/PublicMessages';
+import FooterComponent from './Components/Footer/FooterComponent';
+import SharedScreen from './Components/SharedScreen/SharedScreen';
+import CreateSurvey from './Components/Survey/CreateSurvey';
+import ShowSurvey from './Components/Survey/ShowSurvey'
 
 const App = () => {
 

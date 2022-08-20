@@ -85,7 +85,7 @@ const PublicMessages = ({isActive}) => {
               </div>
               <form class="typeBox" action="">
                 <input type="text" placeholder="Enter Message" name="question" required/>
-                <button className="sumbit-btn" type="submit"><TiLocationArrowOutline  /></button>
+                <button className="sumbit-btn" type="submit"><TiLocationArrowOutline className="submit-icon" /></button>
               </form>
             </div>
     )

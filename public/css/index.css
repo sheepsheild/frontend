@@ -73,7 +73,8 @@ body {
 }
 
 .messagesPanel .messages > ul > li > p {
-    background-color: #C78EFF;
+    /* background-color: #9976bd; */
+    background-color: #707070;
     color: white;
     font-size: 0.9em;
     padding: 2px 10px;
@@ -116,7 +117,7 @@ body {
     padding: 15px;
     border: none;
     border-radius: 15px 0 0 15px;
-    background-color: #7f9bc2;
+    background-color: #707070;
     color: white;
 }
 
@@ -128,7 +129,8 @@ body {
 
 .messagesPanel .typeBox .sumbit-btn {
     color: white;
-    background-color: #7f9bc2;
+    /* background-color: #7f9bc2; */
+    background-color: #707070;
     width: 15%;
     height: 100%;
     border: none;
@@ -137,6 +139,10 @@ body {
     font-size: 150%;
     text-align: center;
     transition: all ease-in-out 0.2s;
+}
+
+.messagesPanel .typeBox .sumbit-btn .submit-icon {
+    margin-top: 10%;
 }
 
 .messagesPanel .typeBox .sumbit-btn:hover {

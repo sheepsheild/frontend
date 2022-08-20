@@ -1,5 +1,4 @@
     .privateMessagesPanel {
-        opacity: 100%;
         position: absolute;
         right: 10px;
         display: block;
@@ -14,11 +13,7 @@
         /* transition: all ease-in-out 1.5s; */
         text-align: center;
     }
-    
-    .privateMessagesPanel.active {
-        opacity: 100%;
-    }
-    
+  
     .private-messagesHeader {
         height: 3%;
         font-size: 20px;
@@ -31,7 +26,7 @@
         overflow-y: auto;
         /* overflow-x: hidden; */
         margin-top: 1%;
-        height: 85%;
+        height: 76%;
         width: 100%;
     }
     
@@ -120,6 +115,7 @@
     .chat-messages > .chat-messages-me {
         text-align: right;
         background-color: #5349f8;    
+        /* background-color: purple; */
         border-radius: 10px 10px 0 10px ;
         margin:5px 2px 0 auto;
     }
@@ -127,7 +123,8 @@
     .chat-messages > .chat-messages-other {
         text-align: left;
         margin:8px auto 0 2px;  
-        background-color: #C78EFF;
+        /* background-color: #9976bd; */
+        background-color: #707070;
         border-radius: 10px 10px 10px 0 ;
     }
     
@@ -173,7 +170,7 @@
         padding: 15px;
         border: none;
         border-radius: 15px 0 0 15px;
-        background-color: #7f9bc2;
+        background-color: #707070;
         color: white;
     }
     
@@ -185,7 +182,7 @@
     
     .privateMessagesPanel .typeBox .sumbit-btn {
         color: white;
-        background-color: #7f9bc2;
+        background-color: #707070;
         width: 15%;
         height: 100%;
         border: none;
@@ -195,7 +192,15 @@
         text-align: center;
         transition: all ease-in-out 0.2s;
     }
+
+    .privateMessagesPanel .typeBox .sumbit-btn .submit-icon {
+        margin-top: 8%;
+    }
     
     .privateMessagesPanel .typeBox .sumbit-btn:hover {
         opacity: 0.8;
+    }
+
+    ::placeholder {
+        color:white;
     }
