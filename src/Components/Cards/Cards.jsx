@@ -31,10 +31,12 @@ const Cards = ({
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-      fetch("https://api.example.com/Users")
+      fetch("https://jsonplaceholder.typicode.com/photos?_limit=9")
         .then(res => res.json())
         .then(
           (result) => {
+            console.log(result);
+            setUsers(result)
             setIsLoaded(true);
             setUsers(result);
           },
@@ -553,7 +555,7 @@ const Cards = ({
             <div key={User.id} className={isBack ? "card active" : "card"} onClick={handleRotationCard}>
               <div className="frontCard">
                 <div className="circle">
-                  <img alt="personImg" src={User.img} />
+                  <img alt="personImg" src={User['thumbnailUrl']} />
                 </div>
                 <div className="iconUser">
                   <ul>
@@ -586,15 +588,15 @@ const Cards = ({
                   </ul>
                 </div>
                 <p>
-                  {User.name}
+                  {User.id}
                 </p>
               </div>
               {/* end front card*/}
 
               <div className="backCard" onClick={() => HandlePrivateIsActive(false, "{User.name}")}>
                 <div className="details">
-                    <p className="fullName">Full Name</p><span>{User.name} {User.family}</span>
-                    <p className="idCard">ID Card</p><span>{User.id}</span>
+                    <p className="fullName">Full Name</p><span>{User['albumId']} {User['id']}</span>
+                    <p className="idCard">ID Card</p><span>{User['id']}</span>
                     <button  className="startChat">Start Chat</button>
                 </div>
               </div>
