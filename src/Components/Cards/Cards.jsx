@@ -31,14 +31,13 @@ const Cards = ({
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-      fetch("https://jsonplaceholder.typicode.com/photos?_limit=9")
+      fetch("http://127.0.0.1:8000/room/api/room_users/2/")
         .then(res => res.json())
         .then(
           (result) => {
             console.log(result);
             setUsers(result)
             setIsLoaded(true);
-            setUsers(result);
           },
 
           (error) => {
@@ -588,15 +587,15 @@ const Cards = ({
                   </ul>
                 </div>
                 <p>
-                  {User.id}
+                  {User.user.username}
                 </p>
               </div>
               {/* end front card*/}
 
               <div className="backCard" onClick={() => HandlePrivateIsActive(false, "{User.name}")}>
                 <div className="details">
-                    <p className="fullName">Full Name</p><span>{User['albumId']} {User['id']}</span>
-                    <p className="idCard">ID Card</p><span>{User['id']}</span>
+                    <p className="fullName">Full Name</p><span>{User.user['full_name']}</span>
+                    <p className="idCard">Email</p><span>{User.user['email']}</span>
                     <button  className="startChat">Start Chat</button>
                 </div>
               </div>
