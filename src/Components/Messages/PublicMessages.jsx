@@ -4,52 +4,51 @@ import {
   TiLocationArrowOutline
 } from "react-icons/ti";
 
-const PublicMessages = ({isActive}) => {
+
+const PublicMessages = ({}) => {
   
   const [messages, setmessages] = useState([]);
-  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [content, setcontent] = useState('');
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/room/api/message_list/2/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          setmessages(result)
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    const fetchData = async () => {
+      const result = await fetch('http://127.0.0.1:8000/room/api/message_list/2/');
+      const jsonResult = await result.json();
+      setmessages(jsonResult);
+      setIsLoaded(true);
+    }
+    
+    fetchData();
   }, [])
 
-const addmessage  = (content) => {
-  fetch('http://127.0.0.1:8000/room/api/send_message/', {
+  const handleSetContent = (content) => {
+    setContent(content)
+  }
+  
+
+  const addmessage = async(event) => {
+
+    event.preventDefault();
+    event.target.reset();
+    const result = await fetch('http://127.0.0.1:8000/room/api/send_message/', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "user": 1,
-      "room": 2,
-      "content": content
-    })
-  });
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "user": 1,
+        "room": 2,
+        "content": content
+        })
+      })
+
+    const newMessage = await result.json();
+    setmessages(oldContent => [... oldContent, newMessage]);
 }
 
-const handleChange = (e) => {
-  setcontent( e.target.value );
-}
-
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
 
@@ -78,68 +77,10 @@ const handleChange = (e) => {
                     <p>i wanna ask a question from master ... </p>
                     <span>mike smith</span>
                   </li>
-                  <li>
-                    <p>yes mike ask!</p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>how can i have a lot money ?</p>
-                    <span>mike smith</span>
-                  </li>
-                  <li>
-                    <p>this is easy mike!!</p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>
-                      Choose a job where someone has made a lot of money at this
-                      ...
-                    </p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>and so so try to be a master in this</p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>hello everybody</p>
-                    <span>john</span>
-                  </li>
-                  <li>
-                    <p>hello</p>
-                    <span>lisa</span>
-                  </li>
-                  <li className='chat-messages-me'>
-                    <p>i wanna ask a question from master ... </p>
-                    <span>mike smith</span>
-                  </li>
-                  <li>
-                    <p>yes mike ask!</p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>how can i have a lot money ?</p>
-                    <span>mike smith</span>
-                  </li>
-                  <li>
-                    <p>this is easy mike!!</p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>
-                      Choose a job where someone has made a lot of money at this
-                      ...
-                    </p>
-                    <span>master</span>
-                  </li>
-                  <li>
-                    <p>and so so try to be a master in this</p>
-                    <span>master</span>
-                  </li>
                 </ul> */}
               </div>
-              <form class="typeBox" action="" onSubmit={addmessage(content)}>
-                <input type="text" placeholder="Enter Message" name="question" onChange={e => handleChange(e)} required/>
+              <form class="typeBox" action="" onSubmit={addmessage}>
+                <input type="text" placeholder="Enter Message" onChange={e => handleSetContent(e.target.value)} name="question" required/>
                 <button className="sumbit-btn" type="submit" ><TiLocationArrowOutline className="submit-icon" /></button>
               </form>
             </div>
