@@ -59,6 +59,17 @@ const FooterComponent = ({
     }
 
     function HandleStartMicroPhone() {
+      const result = fetch("http://127.0.0.1:8000/room/api/room_users/2/", {
+      method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "id": 1,
+          "microphone": true,
+          })
+        })
       setMic(mic => !mic);
       setMicActive(mic);
     }
