@@ -9,7 +9,7 @@ const PublicMessages = ({isActive}) => {
   const [messages, setmessages] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [content, setcontent] = useState(null);
+  const [content, setcontent] = useState('');
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/room/api/message_list/2/")
@@ -20,7 +20,6 @@ const PublicMessages = ({isActive}) => {
           setmessages(result)
           setIsLoaded(true);
         },
-
         (error) => {
           setIsLoaded(true);
           setError(error);
@@ -41,6 +40,10 @@ const addmessage  = (content) => {
       "content": content
     })
   });
+}
+
+const handleChange = (e) => {
+  setcontent( e.target.value );
 }
 
 
@@ -136,8 +139,8 @@ const addmessage  = (content) => {
                 </ul> */}
               </div>
               <form class="typeBox" action="" onSubmit={addmessage(content)}>
-                <input type="text" placeholder="Enter Message" name="question" required/>
-                <button className="sumbit-btn" type="submit" onClick={e => setcontent(e.target.value)}><TiLocationArrowOutline className="submit-icon" /></button>
+                <input type="text" placeholder="Enter Message" name="question" onChange={e => handleChange(e)} required/>
+                <button className="sumbit-btn" type="submit" ><TiLocationArrowOutline className="submit-icon" /></button>
               </form>
             </div>
     )

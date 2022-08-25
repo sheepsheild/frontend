@@ -154,7 +154,7 @@ body {
 .users {
     position: absolute;
     width: 99%;
-    min-height: 17%;
+    height: 17%;
     bottom: 60px;
     margin: 0 auto;
     overflow-x: scroll;
@@ -167,14 +167,14 @@ body {
 
 .card {
     position: relative;
-    max-width: 125px;
-    height: 100px;
+    width: 180px;
+    height: 90%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
     padding: 8px 80px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    /* margin-left: 10px; */
+    margin: 0.5%;
     cursor: pointer;
     background-color: #140E0E;
     border-radius: 5%;
@@ -199,11 +199,11 @@ body {
 
 .frontCard .circle {
     position: absolute;
-    right: 30%;
+    right: 31%;
     top: 18%;
 }
 
-.frontCard .circle > img {
+.frontCard .circle > div {
     width: 65px;
     height: 65px;
     border-radius: 50%;
