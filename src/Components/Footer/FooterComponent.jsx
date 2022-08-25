@@ -4,13 +4,13 @@ import {
   FaMicrophone,
   FaVideo,
   FaHandPointUp,
-  FaPhoneSlash, 
-  FaChartLine,
-  FaChartBar
+  FaPhoneSlash
 } from "react-icons/fa";
 import { TbScreenShare } from "react-icons/tb";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { SiGooglechat } from "react-icons/si";
+import { RiSurveyFill, RiSurveyLine } from "react-icons/ri";
+
 
 
 
@@ -113,11 +113,11 @@ const FooterComponent = ({
               <ul>
                 <li title="ShowSurvey" onClick={HandleShowSurvey}>
                   {" "}
-                  <FaChartBar />{" "}
+                  <RiSurveyLine />{" "}
                 </li>
                 <li title="CreateSurvey" onClick={HandleCreateSurvey}>
                   {" "}
-                  <FaChartLine />{" "}
+                  <RiSurveyFill />{" "}
                 </li>
                 <li title="microphone" onClick={HandleStartMicroPhone}>
                   {" "}
