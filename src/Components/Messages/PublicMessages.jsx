@@ -9,44 +9,46 @@ const PublicMessages = ({}) => {
   
   const [messages, setmessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [content, setcontent] = useState(null);
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/room/api/message_list/2/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          setmessages(result)
-          setIsLoaded(true);
-        },
-
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    const fetchData = async () => {
+      const result = await fetch('http://127.0.0.1:8000/room/api/message_list/2/');
+      const jsonResult = await result.json();
+      setmessages(jsonResult);
+      setIsLoaded(true);
+    }
+    
+    fetchData();
   }, [])
 
-const addmessage  = (content) => {
-  fetch('http://127.0.0.1:8000/room/api/send_message/', {
+  const handleSetContent = (content) => {
+    setContent(content)
+  }
+  
+
+  const addmessage = async(event) => {
+
+    event.preventDefault();
+    event.target.reset();
+    const result = await fetch('http://127.0.0.1:8000/room/api/send_message/', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "user": 1,
-      "room": 2,
-      "content": content
-    })
-  });
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "user": 1,
+        "room": 2,
+        "content": content
+        })
+      })
+
+    const newMessage = await result.json();
+    setmessages(oldContent => [... oldContent, newMessage]);
 }
 
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
 
@@ -77,9 +79,9 @@ const addmessage  = (content) => {
                   </li>
                 </ul> */}
               </div>
-              <form class="typeBox" action="" onSubmit={addmessage(content)}>
-                <input type="text" placeholder="Enter Message" name="question" required/>
-                <button className="sumbit-btn" type="submit" onClick={e => setcontent(e.target.value)}><TiLocationArrowOutline className="submit-icon" /></button>
+              <form class="typeBox" action="" onSubmit={addmessage}>
+                <input type="text" placeholder="Enter Message" onChange={e => handleSetContent(e.target.value)} name="question" required/>
+                <button className="sumbit-btn" type="submit" ><TiLocationArrowOutline className="submit-icon" /></button>
               </form>
             </div>
     )
