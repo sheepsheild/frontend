@@ -8,7 +8,6 @@ import {
 import { TbScreenShare } from "react-icons/tb";
 
 
-
 const Cards = ({
   setStateChat,  
   setPvCardActive, 
@@ -123,7 +122,12 @@ const Cards = ({
             <div key={User.id} className="card">
               <div className="frontCard">
                 <div className="circle">
-                  <img alt="personImg" src={User['thumbnailUrl']} />
+                  {/* <img alt="personImg" src={User.user['avatar']}/> */}
+                  <div
+                    style={{
+                      backgroundColor: "#" + Math.random().toString(16).substr(-6),
+                    }}
+                  ></div>
                 </div>
                 <div className="iconUser">
                   <ul>
