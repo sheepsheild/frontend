@@ -16,32 +16,33 @@ const Cards = ({
   setName, 
   setIsActive,
   isActive,
-  mic, 
-  webcam, 
   raiseHand,
-  shareScreen, 
-  pvCardActive
+  pvCardActive,
+  reload,
+  Users
   }) => {
 
-    const [pvBox, setPvBox] = useState(true)
-    const [Users, setUsers] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+    // console.log(reload);
 
-    useEffect(() => {
-      fetch("http://127.0.0.1:8000/room/api/room_users/2/")
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setUsers(result)
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-    }, [raiseHand])
+    const [pvBox, setPvBox] = useState(true)
+    // const [Users, setUsers] = useState([]);
+    // const [error, setError] = useState(null);
+    // const [isLoaded, setIsLoaded] = useState(false);
+
+    // useEffect(() => {
+    //   fetch("http://127.0.0.1:8000/room/api/room_users/2/")
+    //     .then(res => res.json())
+    //     .then(
+    //       (result) => {
+    //         setUsers(result)
+    //         setIsLoaded(true);
+    //       },
+    //       (error) => {
+    //         setIsLoaded(true);
+    //         setError(error);
+    //       }
+    //     )
+    // }, [])
 
     /* After a certain movement the pvCard closes instead of opening so bellow code for cover this problem */
     if (pvCardActive===false && isActive===true && pvBox===false) {setPvBox(pvBox => true);}
@@ -64,11 +65,11 @@ const Cards = ({
 
     }
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
+    // if (error) {
+    //   return <div>Error: {error.message}</div>;
+    // } else if (!isLoaded) {
+    //   return <div>Loading...</div>;
+    // } else {
 
     //   return (
     //     <div className="users">
@@ -165,7 +166,7 @@ const Cards = ({
                 <div className="details">
                     {/* <p className="fullName">Full Name</p><span>{User.user['full_name']}</span> */}
                     {/* <h4 className="idCard">Email</h4><div className='email'><p>{User.user['email']}</p></div> */}
-                    <button  className="button-85">Start Chat</button>
+                    <button  className="smartButton">Start Chat</button>
                 </div>
               </div>
 
@@ -178,6 +179,6 @@ const Cards = ({
 
 
 
-}
+// }
 
 export default Cards;

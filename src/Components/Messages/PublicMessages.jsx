@@ -5,7 +5,7 @@ import {
 } from "react-icons/ti";
 
 
-const PublicMessages = ({}) => {
+const PublicMessages = () => {
   
   const [messages, setmessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

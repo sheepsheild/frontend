@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 import PrivateMessages from './Components/Messages/PrivateMessages';
 import Cards from './Components/Cards/Cards';
@@ -10,6 +10,25 @@ import ShowSurvey from './Components/Survey/ShowSurvey';
 
 const App = () => {
 
+  const [reload, setReload] = useState(0);
+  const [micActive, setMicActive] = useState(false);
+  const [webcamActive, setWebcamActive] = useState(false);
+  const [raiseHandActive, setRaiseHandActive] = useState(false);
+  const [screenShareActive, setScreenShareActive] = useState(false);
+
+  useEffect( () => {
+    const fetchData = async() => {
+      const result = await fetch("http://127.0.0.1:8000/room/api/room_users/2/");
+      const resultJson = await result.json();
+      setUsers(resultJson);
+    }
+     
+    fetchData();
+
+  }, [reload])
+
+
+
 
   /* Footer Right icons */
   const [stateChat, setStateChat] = useState(false);
@@ -19,14 +38,14 @@ const App = () => {
   const [pvFooterActive, setPvFooterActive] = useState(false);
 
   /* Footer Middle icons */
-  const [micActive, setMicActive] = useState(false);
-  const [webcamActive, setWebcamActive] = useState(false);
-  const [raiseHandActive, setRaiseHandActive] = useState(false);
-  const [screenShareActive, setScreenShareActive] = useState(false);
+  
   const [CreateSurveyActive, setCreateSurveyActive] = useState(false);
   const [ShowSurveyActive, setShowSurveyActive] = useState(false);
 
- 
+ /* Related to all */
+  const [Users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   
 
   let Messages = [];
@@ -60,7 +79,9 @@ const App = () => {
             raiseHand={raiseHandActive}
             shareScreen={screenShareActive}
             pvFooterActive={pvFooterActive}
-            pvCardActive={pvCardActive} />
+            pvCardActive={pvCardActive}
+            reload={reload}
+            Users={Users} />
 
           <span className="underline"></span>
 
@@ -75,6 +96,8 @@ const App = () => {
             setIsActive={setIsActive}
             setPvFooterActive={setPvFooterActive}
             setPvCardActive={setPvCardActive}
+            setReload={setReload}
+            Users={Users}
             isActive={isActive}
             pvCardActive={pvCardActive}
             pvFooterActive={pvFooterActive}  />

@@ -28,6 +28,8 @@ const FooterComponent = ({
   isActive,
   pvCardActive,
   pvFooterActive,
+  setReload,
+  
   }) => {
 
     const [CreateSurvey, setCreateSurvey] = useState(true);
@@ -49,19 +51,19 @@ const FooterComponent = ({
     function HandleCreateSurvey() {
       if(ShowSurvey===false) {setShowSurvey(true);setShowSurveyActive(ShowSurvey)}
       setCreateSurvey(CreateSurvey => !CreateSurvey);
-      setCreateSurveyActive(CreateSurvey)
+      setCreateSurveyActive(CreateSurvey);
+      setReload(oldRelaod => oldRelaod + 1);
     }
 
     function HandleShowSurvey() {
       if(CreateSurvey===false) {setCreateSurvey(true);setCreateSurveyActive(CreateSurvey)}
       setShowSurvey(ShowSurvey => !ShowSurvey);
-      setShowSurveyActive(ShowSurvey)
+      setShowSurveyActive(ShowSurvey);
+      setReload(oldRelaod => oldRelaod + 1);
     }
 
     function HandleStartMicroPhone() {
-
-      setMic(mic => !mic);
-
+      setMic(mic => !mic)
       fetch("http://127.0.0.1:8000/room/api/user/microphone/2/", {
       method: 'PUT',
         headers: {
@@ -72,11 +74,11 @@ const FooterComponent = ({
           "microphone": mic,
           })
       })
+      setReload(oldRelaod => oldRelaod + 1);
     }
 
     function HandleStartWebcam() {
       setWebcam(webcam => !webcam);
-
       fetch("http://127.0.0.1:8000/room/api/user/webcam/1/", {
       method: 'PUT',
         headers: {
@@ -87,6 +89,7 @@ const FooterComponent = ({
           "webcam": webcam,
           })
       })
+      setReload(oldRelaod => oldRelaod + 1);
     }
 
     function HandleStartShareScreen() {
@@ -101,6 +104,7 @@ const FooterComponent = ({
           "screen": shareScreen,
           })
       })
+      setReload(oldRelaod => oldRelaod + 1);
     }
 
     function HandleStartRaiseHand() {
