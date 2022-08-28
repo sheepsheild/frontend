@@ -4,19 +4,54 @@ class ShowSurvey extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      question: "You shoud answer this Question",
-      Options: [
-        {"id":1, "Content" : "First Option"},
-        {"id":2, "Content" : "second Option"}],
+      questions: [],
+      Options: [],
+      isLoaded: false,
+      error:"",
+      title:"",
       result: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
-  ReadForm(){
-    this.setState({question :  this.state.question
-    })
+
+  componentDidMount() {
+    fetch("http://127.0.0.1:8000/room/api/polls/2/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            questions: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
+
+  // componentDidMount() {
+  //   fetch("http://127.0.0.1:8000/room/api/choices/23/")
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           questions: result.polls
+  //         });
+  //       },
+  //       (error) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           error
+  //         });
+  //       }
+  //     )
+  // }
 
   addFormFields() {
     this.setState(({
@@ -34,15 +69,21 @@ class ShowSurvey extends React.Component {
     event.preventDefault();
     alert(JSON.stringify(this.state.result));
   }
-
+  
   render() {
-
+    let items = Object.values(this.state.questions)[this.state.questions.length-1];
+    if (items!=null)
+    {
+      let id = Object.values(items)[0];
+      this.setState({title: Object.values(items)[1]});
+      let status = Object.values(items)[2];
+    }
     return (
         <div className="form-popup">
             <form className="form-container" onSubmit={this.handleSubmit}>
                 <label for="question"><b>Question</b></label>
                 <p>
-                    {this.state.question}
+                    {this.state.title}
                 </p>
                 <label for="option"><b>Option</b></label>
                 <ul className="option">

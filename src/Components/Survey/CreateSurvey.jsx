@@ -10,15 +10,15 @@ class CreateSurvey extends React.Component {
     super(props)
     this.state = { 
       Question: "",
-      count:1,
-      Options: [{ id: 0 ,content : "" }]
+      // count:1,
+      Options: [{ content : "" }]
      };
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSetQuestion = this.handleSetQuestion.bind(this)
   }
   
   handleChange(i, e) {
     let Options = this.state.Options;
-    Options[i][e.target.name] = e.target.value;
+    Options[i]= e.target.value;
     this.setState({ Options });
   }
 
@@ -29,9 +29,9 @@ class CreateSurvey extends React.Component {
   }
 
   addFormFields() {
-    this.setState( {count : this.state.count + 1})
+    // this.setState( {count : this.state.count + 1})
     this.setState(({
-      Options: [...this.state.Options, {id:this.state.count , content: "" }]
+      Options: [...this.state.Options, { content: "" }]
     }))
   }
 
@@ -39,21 +39,53 @@ class CreateSurvey extends React.Component {
     let Options = this.state.Options;
     Options.splice(i);
     this.setState({ Options });
-    this.setState( {count : i })
+    // this.setState( {count : i })
 
   }
 
-  handleSubmit(event) {
+  handleSetQuestion = (event) => {
+    alert("set alert");
     event.preventDefault();
-    alert(JSON.stringify(this.state.Question));
-    alert(JSON.stringify(this.state.Options));
+    fetch('http://127.0.0.1:8000/room/api/create_poll/', {
+    method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "user": 1,
+        "room": 2,
+        "status":true,
+        "title": this.state.Question
+        })
+    })
+    this.handleSetOptions(); 
   }
+
+  handleSetOptions = () => {
+
+      var content = this.state.Options.join('-')
+      fetch('http://127.0.0.1:8000/room/api/create_choice/', {
+        method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            "status": true,
+            "vote": 23,
+            "content": content
+            })
+        })
+  }
+
+
 
   render() {
     const Options = this.state.Options; 
     return (
         <div className="form-popup">
-            <form className="form-container" onSubmit={this.handleSubmit}>
+            <form className="form-container" onSubmit={this.handleSetQuestion}>
                 <label for="question"><b>Question</b></label>
                 <input type="text" placeholder="Enter Question" name="question" onChange={e => this.handleChangeQuestion(e)} required/>
                 <label for="option"><b>Option</b></label>

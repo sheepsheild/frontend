@@ -59,29 +59,48 @@ const FooterComponent = ({
     }
 
     function HandleStartMicroPhone() {
-      const result = fetch("http://127.0.0.1:8000/room/api/room_users/2/", {
-      method: 'POST',
+
+      setMic(mic => !mic);
+
+      fetch("http://127.0.0.1:8000/room/api/user/microphone/2/", {
+      method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "id": 1,
-          "microphone": true,
+          "microphone": mic,
           })
-        })
-      setMic(mic => !mic);
-      setMicActive(mic);
+      })
     }
 
     function HandleStartWebcam() {
       setWebcam(webcam => !webcam);
-      setWebcamActive(webcam);
+
+      fetch("http://127.0.0.1:8000/room/api/user/webcam/1/", {
+      method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "webcam": webcam,
+          })
+      })
     }
 
     function HandleStartShareScreen() {
       setShareScreen(shareScreen => !shareScreen);
-      setScreenShareActive(shareScreen);
+      fetch("http://127.0.0.1:8000/room/api/user/screen/1/", {
+      method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "screen": shareScreen,
+          })
+      })
     }
 
     function HandleStartRaiseHand() {

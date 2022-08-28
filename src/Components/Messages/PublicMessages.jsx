@@ -10,17 +10,18 @@ const PublicMessages = ({}) => {
   const [messages, setmessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [content, setContent] = useState(null);
+  let room_id =sessionStorage.getItem('room_id')
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch('http://127.0.0.1:8000/room/api/message_list/2/');
+      const result = await fetch(`http://127.0.0.1:8000/room/api/message_list/${room_id}/`);
       const jsonResult = await result.json();
       setmessages(jsonResult);
       setIsLoaded(true);
     }
     
     fetchData();
-  }, [])
+  }, [messages])
 
   const handleSetContent = (content) => {
     setContent(content)
@@ -44,8 +45,8 @@ const PublicMessages = ({}) => {
         })
       })
 
-    const newMessage = await result.json();
-    setmessages(oldContent => [... oldContent, newMessage]);
+    // const newMessage = await result.json();
+    // setmessages(oldContent => [... oldContent, newMessage]);
 }
 
   if (!isLoaded) {

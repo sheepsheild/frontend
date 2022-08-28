@@ -33,17 +33,15 @@ const Cards = ({
         .then(res => res.json())
         .then(
           (result) => {
-            console.log(result);
             setUsers(result)
             setIsLoaded(true);
           },
-
           (error) => {
             setIsLoaded(true);
             setError(error);
           }
         )
-    }, [])
+    }, [raiseHand])
 
     /* After a certain movement the pvCard closes instead of opening so bellow code for cover this problem */
     if (pvCardActive===false && isActive===true && pvBox===false) {setPvBox(pvBox => true);}
@@ -133,21 +131,19 @@ const Cards = ({
                   <ul>
                     <li
                       style={{ display: "none" }}
-                      className={mic ? "mic" : ""}
+                      className={User.user.microphone ? "mic" : ""}
                     >
                       <FaMicrophone />
                     </li>
                     <li
                       style={{ display: "none" }}
-                      className={webcam ? "webcam" : ""}
+                      className={User.user.webcam ? "webcam" : ""}
                     >
                       <FaVideo />
                     </li>
                     <li
                       style={{ display: "none" }}
-                      className={
-                        shareScreen ? "shareScreen" : ""
-                      }
+                      className={User.user.screen ? "shareScreen" : ""}
                     >
                       <TbScreenShare />
                     </li>
